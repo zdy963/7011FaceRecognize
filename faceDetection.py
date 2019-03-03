@@ -84,13 +84,13 @@ def faceDetect(imagePath):
 
             try:
                 cor = face_dict[max(face_dict['lst'])]['cor']
-                cor = expandLanger(cor, percent=(0.08, 0.12))
+                # cor = expandLanger(cor, percent=(0.08, 0.12))
                 x = cor[0]
                 y = cor[1]
                 w = cor[2]
                 h = cor[3]
                 image = image[y:y + h, x:x + w]
-                imagePath = imagePath.replace('photos2/', 'cropped_photos2/')
+                imagePath = imagePath.replace('photos2/', 'cropped_photos2_origin/')
                 # print(imagePath)
                 imagePath = imagePath.split('.')
                 cv2.imwrite(imagePath[0] + '_cropped.' + imagePath[1], image)
