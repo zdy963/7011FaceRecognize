@@ -42,7 +42,7 @@ class simpleNet:
 
         # First convolutional layer with ReLU-activation and max-pooling.
         # kernel_size means size of filter, eg: the filter is 5x5
-        # filtres means the number of filter, in this case we have 16 filter
+        # filters means the number of filter, in this case we have 16 filter
         # so the output depth equals to 16
         model.add(Conv2D(kernel_size=3, strides=1, filters=16, padding='same',
                          activation='relu', name='layer_conv1', input_shape=inputShape))
@@ -64,12 +64,19 @@ class simpleNet:
         model.add(MaxPooling2D(pool_size=2, strides=2))
         # model.add(Dropout(0.25))
 
+        # Fourth convolutional layer with ReLU-activation and max-pooling.
+        model.add(Conv2D(kernel_size=3, strides=1, filters=128, padding='same',
+                         activation='relu', name='layer_conv4'))
+        # model.add(BatchNormalization(axis=chanDim))
+        model.add(MaxPooling2D(pool_size=2, strides=2))
+        model.add(Dropout(0.5))
+
         # Flatten the 4-rank output of the convolutional layers
         # to 2-rank that can be input to a fully-connected / dense layer.
         model.add(Flatten())
 
         # First fully-connected / dense layer with ReLU-activation.
-        model.add(Dense(150, activation='relu'))
+        model.add(Dense(128, activation='relu'))
         model.add(BatchNormalization())
         model.add(Dropout(0.5))
 
