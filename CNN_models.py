@@ -67,9 +67,9 @@ class simpleNet:
         # Fourth convolutional layer with ReLU-activation and max-pooling.
         model.add(Conv2D(kernel_size=3, strides=1, filters=128, padding='same',
                          activation='relu', name='layer_conv4'))
-        # model.add(BatchNormalization(axis=chanDim))
+        model.add(BatchNormalization(axis=chanDim))
         model.add(MaxPooling2D(pool_size=2, strides=2))
-        model.add(Dropout(0.5))
+        model.add(Dropout(0.25))
 
         # Flatten the 4-rank output of the convolutional layers
         # to 2-rank that can be input to a fully-connected / dense layer.
